@@ -97,6 +97,8 @@
         <li><b>Filename</b>: The name of the log file that will be used, e.g. "log.txt".</li>
         <li><b>Prepend with current date</b>: Use this to have the node create separate files for each day,
             called e.g. "2022_07_22_log.txt".</li>
+        <li><b># of days retention</b>: Conditional if using the above "prepend with current date". The node will try to keep the number of log files to
+            this number of files (to avoid running out of disk space). E.g. if set to 5, you will have the most recent 5-6 days of logs retained.</li>
         <li><b>Timestamp each entry</b>: Use this to have the node timestamp each entry with ISO8601 timestamp.</li>
     </ul>
     <h1>How to use</h1>
