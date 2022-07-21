@@ -1,0 +1,114 @@
+<script type="text/html" data-template-name="Logging Configuration">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
+        <input type="text" id="node-config-input-name" data-i18n="[placeholder]node-red:common.label.name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-dir"><i class="fa fa-globe"></i> Directory </label>
+        <input type="text" id="node-config-input-dir" data-i18n="[placeholder]Directory">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-filename"><i class="fa fa-tag"></i> Filename</label>
+        <input type="text" id="node-config-input-filename" data-i18n="[placeholder]Filename">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-dateinfilename"><i class="fa fa-tag"></i> Prepend filename with current date?</label>
+        <input type="checkbox" id="node-config-input-dateinfilename">
+    </div>
+    <div class="form-row retention-input-form-row">
+        <label for="node-config-input-retentiondays"><i class="fa fa-tag"></i> # of days retention</label>
+        <input id="node-config-input-retentiondays" class="blb-file-logger-retention-input" value="1">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-includetimestamp"><i class="fa fa-tag"></i> Timestamp each entry?</label>
+        <input type="checkbox" id="node-config-input-includetimestamp">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('Logging Configuration',{
+        category: 'config',
+        defaults: {
+            dir: {value: "", required: true},
+            name: {value:""},
+            filename: {value: "nodered.log", required: true},
+            dateinfilename: {value: true},
+            includetimestamp: {value: true},
+            retentiondays: {value: 1, min: 1}
+        },
+        label: function() {
+            return this.name || this.dir;
+        },
+        oneditprepare: function() {
+            $(".blb-file-logger-retention-input").spinner({ min:1 });
+            $("#node-config-input-dateinfilename").on("change", function() {
+                var checked = $("#node-config-input-dateinfilename")[0].checked;
+                if(checked)
+                {
+                    $(".retention-input-form-row").show();
+                }
+                else {
+                    $(".retention-input-form-row").hide();
+                }
+            });
+        }
+    });
+
+    
+</script>
+
+
+<script type="text/html" data-template-name="log-to-file">
+    <div class="form-row">
+        <label for="node-input-settings"><i class="fa fa-file-text"></i> Logging settings </label>
+        <input type="text" id="node-input-settings">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('log-to-file', {
+        category: "common",
+        defaults: {
+            settings: {type:"Logging Configuration",required:true}
+        },
+        inputs: 1,
+        outputs: 2,
+        icon: "font-awesome/fa-file-text",
+        color: "#EDBE47",
+        label: function () {
+            var settingsNode = RED.nodes.node(this.settings);
+            return (settingsNode ? "Log to " + settingsNode.name : "Log to file");
+        },
+        outputLabels: ["Logged successfully","Error while logging"]
+    });
+</script>
+
+
+
+<script type="text/html" data-help-name="log-to-file">
+    <p>Persists text strings to log files on your file system.</p>
+    <h1>Configuration</h1>
+    <p>Define one or more logging configurations (via config nodes) that define where and how log files will be managed. The following settings are used for the configuration:</p>
+    <ul>
+        <li><b>Name</b>: A name by which you recognize the log storage. This becomes part of the node name,
+            e.g. if the name of the configuration is "Documents", the file logging node will read "Log to Documents".</li>
+        <li><b>Directory</b>: The directory on your file system where the log file(s) for this configuration will be stored.
+            E.g. "/var/log/nodered" or "C:/NodeRed".</li>
+        <li><b>Filename</b>: The name of the log file that will be used, e.g. "log.txt".</li>
+        <li><b>Prepend with current date</b>: Use this to have the node create separate files for each day,
+            called e.g. "2022_07_22_log.txt".</li>
+        <li><b>Timestamp each entry</b>: Use this to have the node timestamp each entry with ISO8601 timestamp.</li>
+    </ul>
+    <h1>How to use</h1>
+    <p>Create at least one configuration and use it in the node.
+        If different events in your system should be logged to different folders or with different log file names,
+        create separate configuration nodes and choose the desired one in each flow.
+    </p>
+    <p>Input a string via the <code>msg.logging.input</code> variable. The string will be appended to the log file.</p>
+    <h1>Output ports</h1>
+    <p>The 1st output of the file logger outputs a message if the message was successfully written to the log file. 
+        The 2nd output of the file logger outputs a message if an error occurred while logging.</p>
+    <p>You can use the 2nd output to monitor for errors, e.g. file permissions, disk space etc. An error message is provided 
+        in the <code>msg.logging.error</code> variable.
+    </p>
+</script>
