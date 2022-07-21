@@ -153,6 +153,6 @@ module.exports = function (RED) {
         }
 
     }
-    RED.nodes.registerType("log-to-file", BLBFileLoggerNode);
+    RED.nodes.registerType("blb-file-logger", BLBFileLoggerNode);
 };
 

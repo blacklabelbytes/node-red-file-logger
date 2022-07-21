@@ -58,7 +58,7 @@
 </script>
 
 
-<script type="text/html" data-template-name="log-to-file">
+<script type="text/html" data-template-name="blb-file-logger">
     <div class="form-row">
         <label for="node-input-settings"><i class="fa fa-file-text"></i> Logging settings </label>
         <input type="text" id="node-input-settings">
@@ -66,7 +66,7 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('log-to-file', {
+    RED.nodes.registerType('blb-file-logger', {
         category: "common",
         defaults: {
             settings: {type:"Logging Configuration",required:true}
@@ -85,7 +85,7 @@
 
 
 
-<script type="text/html" data-help-name="log-to-file">
+<script type="text/html" data-help-name="blb-file-logger">
     <p>Persists text strings to log files on your file system.</p>
     <h1>Configuration</h1>
     <p>Define one or more logging configurations (via config nodes) that define where and how log files will be managed. The following settings are used for the configuration:</p>
