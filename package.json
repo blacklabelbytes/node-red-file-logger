@@ -1,8 +1,8 @@
 {
-  "name": "blb-file-logger",
+  "name": "@blacklabelbytes/file-logger",
   "version": "0.2.0",
-  "description": "Node-RED node for logging to local files.",
-  "bundleDependencies": false,
+  "description": "Node-RED node for logging to local files.",  
+  "contributors": [],
   "keywords": ["logging","file","log","debug"],
   "node-red": {
     "version": ">=2.0.0",
@@ -10,10 +10,20 @@
       "log-to-file": "blb-file-logger.js"
     }
   },
+  "engines": {
+    "node": ">=16.14.0"
+  },
   "author": {
       "name": "Magnus Sundell",
       "email": "magnus@blb.fi",
       "url": "https://www.blb.fi"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/blacklabelbytes/node-red-file-logger.git"
+  },
+  "bugs": {
+      "url": "https://github.com/blacklabelbytes/node-red-file-logger/issues"
   },
   "license": "MIT"
 }
