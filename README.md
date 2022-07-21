@@ -18,7 +18,7 @@ Define one or more logging configurations (via config nodes) that define where a
 - **Name**: A name by which you recognize the log storage. This becomes part of the node name, e.g. if the name of the configuration is "Documents", the file logging node will read "Log to Documents".
 - **Directory**: The directory on your file system where the log file(s) for this configuration will be stored. E.g. "/var/log/nodered" or "C:/NodeRed".
 - **Filename**: The name of the log file that will be used, e.g. "log.txt".
-- **Prepend with current date**: Use this to have the node create separate files for each day, called e.g. "2022_07_22_log.txt".
+- **Prepend with current date**: Use this to have the node create separate files for each day. For example, if "Filename" is set to "log.txt", the logger would create files named "2022_07_22_log.txt".
 - **# of days retention**: Conditional if using the above "prepend with current date". The node will try to keep the number of log files to this number of files (to avoid running out of disk space). E.g. if set to 5, you will have the most recent 5-6 days of logs retained.
 - **Timestamp each entry**: Use this to have the node timestamp each entry with ISO8601 timestamp.
 
