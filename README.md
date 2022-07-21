@@ -1,2 +1,27 @@
 # node-red-file-logger
 File logger node for Node-RED
+
+# Description
+This node for Node-RED can be used to persist text strings to log files on your file system. The reason for creating the node was to save information on the requests sent by users to a Node-RED installation, how the processing of it proceeded, and what the end result was.
+
+# Configuration
+Define one or more logging configurations (via config nodes) that define where and how log files will be managed. The following settings are used for the configuration:
+
+- **Name**: A name by which you recognize the log storage. This becomes part of the node name, e.g. if the name of the configuration is "Documents", the file logging node will read "Log to Documents".
+- **Directory**: The directory on your file system where the log file(s) for this configuration will be stored. E.g. "/var/log/nodered" or "C:/NodeRed".
+- **Filename**: The name of the log file that will be used, e.g. "log.txt".
+- **Prepend with current date**: Use this to have the node create separate files for each day, called e.g. "2022_07_22_log.txt".
+- **Timestamp each entry**: Use this to have the node timestamp each entry with ISO8601 timestamp.
+
+# Usage
+Create at least one configuration and use it in the node. If different events in your system should be logged to different folders or with different log file names, create separate configuration nodes and choose the desired one in each flow.
+
+Input a string via the `msg.logging.input` variable. The string will be appended to the log file.
+
+# Output ports
+The 1st output of the file logger outputs a message if the message was successfully written to the log file. The 2nd output of the file logger outputs a message if an error occurred while logging.
+
+You can use the 2nd output to monitor for errors, e.g. file permissions, disk space etc. An error message is provided in the `msg.logging.error` variable.
+
+# License
+MIT
