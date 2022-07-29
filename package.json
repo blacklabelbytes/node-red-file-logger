@@ -1,6 +1,6 @@
 {
   "name": "@blacklabelbytes/node-red-file-logger",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Node-RED node for logging to local files.",  
   "contributors": [],
   "keywords": ["logging","file","log","debug"],
