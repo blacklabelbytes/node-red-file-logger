@@ -91,6 +91,22 @@ module.exports = function (RED) {
                     return;
                 }
 
+                if(msg.logging.input === msg)
+                {
+                    msg.logging = {};
+                    msg.logging.error = "Potential circular reference caught. Did you accidentally input 'msg'?'";
+                    node.send([null, msg]);
+                    return;
+                }
+
+                if(msg.logging.input === msg.logging)
+                {
+                    msg.logging = {};
+                    msg.logging.error = "Potential circular reference caught. Did you accidentally input 'msg.logging'?";
+                    node.send([null, msg]);
+                    return;
+                }
+
                 var stringToWrite = msg.logging.input;
 
                 if(stringToWrite === undefined || stringToWrite === null) {
