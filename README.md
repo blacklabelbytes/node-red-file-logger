@@ -1,3 +1,7 @@
+![Platform Node-RED](http://b.repl.ca/v1/Platform-Node--RED-red.png)
+[![npm version](https://badge.fury.io/js/@blacklabelbytes%2Fnode-red-file-logger.svg)](https://badge.fury.io/js/@blacklabelbytes%2Fnode-red-file-logger)
+![npm download](https://img.shields.io/npm/dw/@blacklabelbytes/node-red-file-logger)
+
 # node-red-file-logger
 File logger node for Node-RED
 
