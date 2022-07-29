@@ -35,11 +35,11 @@ Input a string via the `msg.logging.input` variable. The string will be appended
 
 Simple example of how to log to a file (in the example on a Windows machine). A function node composes a message to log to the file.
 
-![Flow Example 1](images/Example1.png)
+![Flow Example 1](images/Example1.PNG)
 
 A slightly more advanced example is where an HTTP request comes in. The input data is logged first, then some processing of the request is done. Depending on the success of the processing, either a success response or an error response is provided. The data logged to the file depends on each case.
 
-![Flow Example 2](images/Example2.png)
+![Flow Example 2](images/Example2.PNG)
 
 # Output ports
 The 1st output of the file logger outputs a message if the message was successfully written to the log file. The 2nd output of the file logger outputs a message if an error occurred while logging.
